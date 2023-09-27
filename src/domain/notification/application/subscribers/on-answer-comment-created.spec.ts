@@ -13,11 +13,14 @@ import {
   SendNotificationUseCaseResponse,
 } from '../use-cases/send-notification'
 import { OnAnswerCommentCreated } from './on-answer-comment-created'
+import { InMemoryStudentsRepository } from 'test/repositories/in-memory-students-repository'
 
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository
 let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let inMemoryNotificationsRepository: InMemoryNotificationsRepository
+let inMemoryStudentsRepository: InMemoryStudentsRepository
+
 let sendNotification: SendNotificationUseCase
 
 let sendNotificationExecuteSpy: SpyInstance<
@@ -27,7 +30,10 @@ let sendNotificationExecuteSpy: SpyInstance<
 
 describe('On Answer Comment Created', () => {
   beforeEach(() => {
-    inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository()
+    inMemoryStudentsRepository = new InMemoryStudentsRepository()
+    inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository(
+      inMemoryStudentsRepository,
+    )
 
     inMemoryAnswerAttachmentsRepository =
       new InMemoryAnswerAttachmentsRepository()
