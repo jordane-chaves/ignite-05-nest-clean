@@ -4,7 +4,7 @@ import { JwtModule } from '@nestjs/jwt'
 import { PassportModule } from '@nestjs/passport'
 
 import { JwtStrategy } from './jwt.strategy'
-import { JwtAuthGuard } from './jwt-auth.guards'
+import { JwtAuthGuard } from './jwt-auth.guard'
 import { EnvService } from '../env/env.service'
 import { EnvModule } from '../env/env.module'
 
